@@ -35,8 +35,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="brand" href="/prototype">MedLog</a>
-
+            <a class="brand" href="/prototype">Project name</a>
             <div class="pull-right">
                 email@address.com <a href="">logout</a>
             </div>
@@ -63,63 +62,129 @@
         <div class="span3">
             <div class="">
                 <ul class="nav nav-tabs nav-stacked">
-                    <li><a href="dashboard.html">Task list</a></li>
+                    <li class="active"><a href="#">Task list</a></li>
                     <li><a href="cases-of-interest.html">Cases of interest</a></li>
-                    <li class="active"><a href="#">Tips and tricks</a></li>
+                    <li><a href="tips-and-tricks.html">Tips and tricks</a></li>
                 </ul>
             </div>
         </div>
         <div class="span9">
-            <h3>Tips and Tricks</h3>
+            <h3>Tasks</h3>
+
+
+            <ul class="nav nav-tabs">
+                <li>
+                    <a href="dashboard.html">Procedures</a>
+                </li>
+                <li class="active">
+                    <a href="#">History taking</a>
+                </li>
+                <li>
+                    <a href="examination-tasks.html">Examination</a>
+                </li>
+            </ul>
+            <div class="pull-right">
+                <a href="#" class="btn btn-primary btn-new-task">New task</a>
+            </div>
             <table class="table table-striped">
                 <thead>
                 <tr>
-                    <th>Title</th>
-                    <th>Date</th>
-                    <th>Comments</th>
-
+                    <th>Task name</th>
+                    <th>
+                    </th>
                 </tr>
                 </thead>
                 <tbody>
                 <tr>
-                    <td><a href="#">Good medical student teaching in Main lecture theatre wednesday lunchtimes!</a></td>
-                    <td>25/05/2013 14:54</td>
-                    <td>6</td>
+                    <td>Collapse</td>
+                    <td>
+                        <div class="pull-right">
+                            <i class="icon-ok"></i>
+                        </div>
+                    </td>
                 </tr>
                 <tr>
-                    <td><a href="#">Need to practice I/M injections</a></td>
-                    <td>24/05/2013 09:23</td>
-                    <td>4</td>
+                    <td>Shortness of breath</td>
+                    <td>
+                        <div class="pull-right">
+                            <i class="icon-ok"></i>
+                        </div>
+                    </td>
                 </tr>
                 <tr>
-                    <td><a href="#">Good consultant teaching round on Thursday mornings.</a></td>
-                    <td>13/04/2013 12:40</td>
-                    <td>2</td>
+                    <td>Fever</td>
+                    <td>
+                        <div class="pull-right">
+                            <i class="icon-ok"></i>
+                        </div>
+                    </td>
                 </tr>
                 <tr>
-                    <td><a href="#">Lots of new patients seen in Dr Brown’s clinic on Tuesdays. Very good teaching..</a></td>
-                    <td>02/04/2013 10:26</td>
-                    <td>0</td>
+                    <td>Chest pain</td>
+                    <td>
+                        <div class="pull-right">
+                            <i class="icon-ok"></i>
+                        </div>
+                    </td>
                 </tr>
                 <tr>
-                    <td><a href="#">Ms Jones does an interesting hand clinic on Fridays.</a></td>
-                    <td>01/04/2013 11:42</td>
-                    <td>10</td>
+                    <td>Abdominal pain</td>
+                    <td>
+                        <div class="pull-right">
+                            <button class="btn btn-success">Complete</button>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Weight loss</td>
+                    <td>
+                        <div class="pull-right">
+                            <button class="btn btn-success">Complete</button>
+                        </div>
+                    </td>
                 </tr>
                 </tbody>
             </table>
         </div>
     </div>
 
+
+    <div class="modal hide fade">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h3>New history taking task</h3>
+        </div>
+        <div class="modal-body">
+            <form class="form-inline">
+                <fieldset>
+                    <label>Task</label>
+                    <input type="text" placeholder="Task details..." class="span5">
+                </fieldset>
+            </form>
+        </div>
+        <div class="modal-footer">
+            <a href="#" class="btn">Close</a>
+            <a href="#" class="btn btn-primary">Save</a>
+        </div>
+    </div>
+
     <!-- TEMPLATE ENDS HERE -->
 
-</div>
-<!-- /container -->
+</div> <!-- /container -->
 
 <!-- Le javascript
 ================================================== -->
 <!-- Placed at the end of the document so the pages load faster -->
 <script src="assets/js/jquery.js"></script>
 <script src="assets/js/bootstrap.min.js"></script>
+<!-- JS was placed withing the template to separate it from the layout -->
+<script type="text/javascript">
+    $(document).ready(function(){
+        $('.btn-new-task').click(function(event){
+            event.preventDefault();
+            $('.modal').modal('toggle');
+        });
+    });
+</script>
 </body>
 </html>

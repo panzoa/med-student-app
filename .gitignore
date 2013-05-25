@@ -1,3 +1,4 @@
 .idea/*
-application/config/config.ini
+application/src/config/config.ini
 application/Zend/*
+*.iml
