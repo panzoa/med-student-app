@@ -68,7 +68,7 @@
                 </ul>
             </div>
         </div>
-        <div class="span6">
+        <div class="span9">
             <h3>Tasks</h3>
 
 
@@ -84,7 +84,7 @@
                 </li>
             </ul>
             <div class="pull-right">
-                <a href="#" class="btn btn-primary">New task</a>
+                <a href="#" class="btn btn-primary btn-new-task">New task</a>
             </div>
             <table class="table table-striped">
                 <thead>
@@ -152,14 +152,19 @@
     <div class="modal hide fade">
         <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-            <h3>Modal header</h3>
+            <h3>New history taking task</h3>
         </div>
         <div class="modal-body">
-            <p>One fine body…</p>
+            <form class="form-inline">
+                <fieldset>
+                    <label>Task</label>
+                    <input type="text" placeholder="Task details..." class="span5">
+                </fieldset>
+            </form>
         </div>
         <div class="modal-footer">
             <a href="#" class="btn">Close</a>
-            <a href="#" class="btn btn-primary">Save changes</a>
+            <a href="#" class="btn btn-primary">Save</a>
         </div>
     </div>
 
@@ -172,5 +177,14 @@
 <!-- Placed at the end of the document so the pages load faster -->
 <script src="assets/js/jquery.js"></script>
 <script src="assets/js/bootstrap.min.js"></script>
+<!-- JS was placed withing the template to separate it from the layout -->
+<script type="text/javascript">
+    $(document).ready(function(){
+        $('.btn-new-task').click(function(event){
+            event.preventDefault();
+            $('.modal').modal('toggle');
+        });
+    });
+</script>
 </body>
 </html>
