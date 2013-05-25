@@ -8,7 +8,7 @@ class Students extends Table {
      */
     public function getStudent() {
         // id of the default user hardcoded as we have no authentication procedure in the mockup
-        $students =  $this->find(1);
-        return $students[0];
+        $student =  $this->getById(1);
+        return $student;
     }
 }

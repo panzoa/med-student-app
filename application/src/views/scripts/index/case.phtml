@@ -1,0 +1,58 @@
+<h3><?php echo $this->case->complaint; ?> (<?php echo $this->case->specialty;?>)</h3>
+<table class="table table-striped">
+    <thead>
+    </thead>
+    <tbody>
+    <tr>
+        <td>
+            <p class="text-left"><i><?php echo $this->case->date; ?></i></p>
+            <p class="text-left"><?php echo $this->case->description; ?></p>
+        </td>
+    </tr>
+    <?php $comments = $this->case->getComments(); ?>
+    <tr>
+        <td>
+            <p class="lead">
+                <?php if (count($comments)) { ?>
+                    Comments:
+                <?php } else { ?>
+                    No comments yet
+                <?php } ?>
+            </p>
+        </td>
+    </tr>
+    <?php if (count($comments)) {
+        foreach ($comments as $comment) {
+            $student = $comment->getStudent();
+            ?>
+            <tr>
+                <td>
+                    <p class="text-left"><?php echo $comment->text; ?></p>
+                    <p class="text-right"><a href="mailto:<?php echo $student->email; ?>"><?php echo $student->name; ?></a></p>
+                </td>
+            </tr>
+            <?php
+        }
+    } ?>
+</table>
+
+<form action="/index/new_comment" method="POST">
+    <input type="hidden" name="case_id" value="<?php echo $this->case->id; ?>">
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Leave a comment</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>
+                <textarea name="text"></textarea>
+            </td>
+        </tr>
+        <tr><td>
+                <input type="submit" class="btn btn-success" value="Submit">
+            </td></tr>
+        </tbody>
+    </table>
+</form>

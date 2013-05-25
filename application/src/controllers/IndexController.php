@@ -66,12 +66,90 @@ class IndexController extends Zend_Controller_Action {
 
         // closing current assignment
         $assignmentTasks = new AssignmentTasks();
-        $results = $assignmentTasks->find($assignmentTaskId);
-        $assignmentTask = $results[0];
+        $assignmentTask = $assignmentTasks->getById($assignmentTaskId);
 
         $assignmentTask->accomplished = date('Y-m-d H:i:s');
         $assignmentTask->save();
 
         $this->_redirect('/index/tasks');
+    }
+
+    public function casesAction() {
+        $students = new Students();
+        $student = $students->getStudent();
+        $this->view->cases = $student->getCurrentAssignment()->getCases();
+    }
+
+    public function newcaseAction() {
+        $complaint = $this->getRequest()->getParam('complaint');
+        $specialty = $this->getRequest()->getParam('specialty');
+        $description = $this->getRequest()->getParam('description');
+
+        if ((strlen($complaint) === 0) or (strlen($specialty) === 0)) {
+            $this->_redirect('/index/cases');
+        }
+
+        $students = new Students();
+        $student = $students->getStudent();
+        $hospital = $student->getCurrentHospital();
+
+        $cases = new Cases();
+        $cases->insert(array(
+            'hospital_id'   => $hospital->id,
+            'complaint'     => $complaint,
+            'specialty'     => $specialty,
+            'description'   => $description,
+            'date'          => date('Y-m-d H:i:s')
+        ));
+
+        $this->_redirect('/index/cases');
+    }
+
+    public function caseAction()
+    {
+        $caseId = $this->getRequest()->getParam('id');
+        if (strlen($caseId) === 0) {
+            $this->_redirect('/index/cases');
+        }
+
+        $cases = new Cases();
+        $case = $cases->getById($caseId);
+        $this->view->case = $case;
+
+        $this->view->comments = $case->getComments();
+    }
+
+    public function newcommentAction()
+    {
+        $caseId = $this->getRequest()->getParam('case_id');
+        if (strlen($caseId) === 0) {
+            $this->_redirect('/index/cases');
+        }
+
+        $cases = new Cases();
+        $case = $cases->getById($caseId);
+
+        $text = $this->getRequest()->getParam('text');
+        if (strlen($text) === 0) {
+            $this->_redirect('/index/case/?id=' . $caseId);
+        }
+
+        $students = new Students();
+        $student = $students->getStudent();
+
+        $cases = new CaseComments();
+        $cases->insert(array(
+            'student_id'    => $student->id,
+            'case_id'       => $case->id,
+            'text'          => $text,
+            'date'          => date('Y-m-d H:i:s')
+        ));
+
+        $this->_redirect('/index/case/?id=' . $caseId);
+    }
+
+    public function tipsntricksAction()
+    {
+        
     }
 }

@@ -1,0 +1,67 @@
+<?php if (count($this->cases) === 0) {
+    ?><p>No cases for your current assignment yet.</p><?php
+} else {
+    ?>
+    <form action="/index/resolve_task" name="resolve_task_form" method="POST">
+        <input type="hidden" name="assignment_task_id" value="">
+
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>Presenting Complaint</th>
+                <th>Specialty</th>
+                <th>Date</th>
+                <th>Comments</th>
+            </tr>
+            </thead>
+            <tbody>
+            <?php foreach ($this->cases as $case) { ?>
+                <tr>
+                    <td><a href="/index/case/?id=<?php echo $case->id; ?>"><?php echo $case->complaint; ?></a></td>
+                    <td><?php echo $case->specialty; ?></td>
+                    <td><?php echo $case->date; ?></td>
+                    <td><?php echo count($case->getComments()); ?></td>
+                </tr>
+            <?php } ?>
+            </tbody>
+        </table>
+
+    </form>
+<?php
+}
+?>
+
+<form action="/index/new_case" method="POST">
+    <table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Register a new case</th>
+            <th>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Complaint</td>
+            <td>
+                <input type="text" name="complaint" value="">
+            </td>
+        </tr>
+        <tr>
+            <td>Specialty</td>
+            <td>
+                <input type="text" name="specialty" value="">
+            </td>
+        </tr>
+        <tr>
+            <td>Complaint</td>
+            <td>
+                <textarea name="description"></textarea>
+            </td>
+        </tr>
+        <tr><td colspan="2">
+            <input type="submit" class="btn btn-success" value="Register">
+        </td></tr>
+    </tbody>
+    </table>
+</form>
