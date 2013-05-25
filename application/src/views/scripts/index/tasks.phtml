@@ -1,0 +1,42 @@
+<?php if (count($this->tasks) === 0) {
+    ?><p>No tasks for your current assignment</p><?php
+} else {
+    ?>
+    <script>
+        function submitForm(id) {
+            document.resolve_task_form.assignment_task_id.value = id;
+            document.resolve_task_form.submit();
+        }
+    </script>
+    <form action="/index/resolve_task" name="resolve_task_form" method="POST">
+        <input type="hidden" name="assignment_task_id" value="">
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Task description</th>
+                <th>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php foreach ($this->tasks as $task) { ?>
+                <tr>
+                    <td><?php echo $task->getTask()->description; ?></td>
+                    <td>
+                        <div class="pull-right">
+                            <?php if ($task->accomplished) { ?>
+                                <i class="icon-ok"></i>
+                            <?php } else { ?>
+                                <input type="button" class="btn btn-success" value="Resolve" onClick="javascript:submitForm(<?php echo $task->id; ?>);">
+                            <?php } ?>
+                        </div>
+                    </td>
+                </tr>
+            <?php } ?>
+        </tbody>
+    </table>
+
+    </form>
+<?php
+}

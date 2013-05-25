@@ -1,13 +1,87 @@
-<html>
-  <head>
-    <title>Boris Bikes Locations for Nokia Maps</title>
-  </head>
-  <body>
-    <h2>Boris Bikes Locations for Nokia Maps</h2>
-    
-    <?php echo $this->layout()->content; ?>
-    
-    <hr/>
-    <small>&copy; Yuriy Akopov, 2012</small>
-  </body>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>NHS Hack Day mockup</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <link href="/assets/css/bootstrap.css" rel="stylesheet">
+    <link href="/assets/css/bootstrap-responsive.css" rel="stylesheet">
+    <link href="/assets/css/styles.css" rel="stylesheet">
+    <link href="/assets/css/font-awesome.min.css" rel="stylesheet">
+
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+    <script src="/assets/js/html5shiv.js"></script>
+    <![endif]-->
+
+    <!-- Fav and touch icons -->
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/assets/ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/assets/ico/apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/assets/ico/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="/assets/ico/apple-touch-icon-57-precomposed.png">
+    <link rel="shortcut icon" href="/assets/ico/favicon.png">
+</head>
+
+<body>
+
+<div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container">
+            <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="brand" href="/">NHS Hack Day mockup</a>
+
+            <div class="pull-right">
+                <a href="mailto:<?php echo $this->student->email; ?>"><?php echo $this->student->name; ?></a>
+                <span style="width: 50px;">&nbsp;</span>
+                <a href="#">logout</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="span8">
+            Your current assignment: <a href="index"><?php echo $this->hospital->name; ?></a>
+        </div>
+        <div class="span4 pull-right">
+            <form class="form-search">
+                <input type="text" class="input-medium search-query">
+                <button type="submit" class="btn">Search</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="span3">
+            <div class="">
+                <ul class="nav nav-tabs nav-stacked">
+                    <li><a href="/index/tasks">Task list</a></li>
+                    <li><a href="cases-of-interest.html">Cases of interest</a></li>
+                    <li><a href="tips-and-tricks.html">Tips and tricks</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="span6">
+            <!-- TEMPLATE STARTS HERE -->
+            <?php echo $this->layout()->content; ?>
+            <!-- TEMPLATE ENDS HERE -->
+        </div>
+    </div>
+</div>
+<!-- /container -->
+
+<!-- Le javascript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="assets/js/jquery.js"></script>
+<script src="assets/js/bootstrap.min.js"></script>
+</body>
 </html>

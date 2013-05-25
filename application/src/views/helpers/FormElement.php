@@ -19,7 +19,7 @@ class Zend_View_Helper_FormElement extends Zend_View_Helper_Abstract {
       }
       
       // all other parameters supplied will be just added as tag attributes
-      foreach ($attributes as $attrName = > $attrValue) {
+      foreach ($attributes as $attrName => $attrValue) {
         $additionalHTML .= $attrName . '="' . htmlspecialchars($attrValue) . '" ';
       }
     }
