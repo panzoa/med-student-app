@@ -18,7 +18,7 @@
             <?php foreach ($this->cases as $case) { ?>
                 <tr>
                     <td><a href="/index/case/?id=<?php echo $case->id; ?>"><?php echo $case->complaint; ?></a></td>
-                    <td><?php echo $case->specialty; ?></td>
+                    <td><?php echo $case->getSpecialty()->name; ?></td>
                     <td><?php echo $case->date; ?></td>
                     <td><?php echo count($case->getComments()); ?></td>
                 </tr>
@@ -50,7 +50,11 @@
         <tr>
             <td>Specialty</td>
             <td>
-                <input type="text" name="specialty" value="">
+                <select name="specialty_id">
+                    <?php foreach ($this->specialties as $specialty) { ?>
+                        <option value="<?php echo $specialty->id; ?>"><?php echo $specialty->name; ?></option>
+                    <?php } ?>
+                </select>
             </td>
         </tr>
         <tr>

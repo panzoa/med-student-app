@@ -10,4 +10,11 @@ class Entity_Case extends Zend_Db_Table_Row_Abstract {
         $comments = $comments->fetchAll($select);
         return $comments;
     }
+
+    public function getSpecialty() {
+        $specialties = new Specialties();
+        $specialty = $specialties->getById($this->specialty_id);
+
+        return $specialty;
+    }
 }

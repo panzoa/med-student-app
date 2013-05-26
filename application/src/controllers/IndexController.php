@@ -78,14 +78,17 @@ class IndexController extends Zend_Controller_Action {
         $students = new Students();
         $student = $students->getStudent();
         $this->view->cases = $student->getCurrentAssignment()->getCases();
+
+        $specialties = new Specialties();
+        $this->view->specialties = $specialties->getAll();
     }
 
     public function newcaseAction() {
         $complaint = $this->getRequest()->getParam('complaint');
-        $specialty = $this->getRequest()->getParam('specialty');
+        $specialty_id = $this->getRequest()->getParam('specialty_id');
         $description = $this->getRequest()->getParam('description');
 
-        if ((strlen($complaint) === 0) or (strlen($specialty) === 0)) {
+        if (strlen($complaint) === 0) {
             $this->_redirect('/index/cases');
         }
 
@@ -97,7 +100,7 @@ class IndexController extends Zend_Controller_Action {
         $cases->insert(array(
             'hospital_id'   => $hospital->id,
             'complaint'     => $complaint,
-            'specialty'     => $specialty,
+            'specialty_id'  => $specialty_id,
             'description'   => $description,
             'date'          => date('Y-m-d H:i:s')
         ));
@@ -150,6 +153,6 @@ class IndexController extends Zend_Controller_Action {
 
     public function tipsntricksAction()
     {
-        
+
     }
 }
