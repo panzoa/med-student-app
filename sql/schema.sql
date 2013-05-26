@@ -107,12 +107,12 @@ DROP TABLE IF EXISTS `cases`;
 CREATE TABLE `cases` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `hospital_id` varchar(45) NOT NULL,
-  `specialty` varchar(45) DEFAULT NULL,
+  `specialty_id` int(11) NOT NULL,
   `complaint` varchar(45) DEFAULT NULL,
   `description` varchar(512) DEFAULT NULL,
   `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -121,7 +121,7 @@ CREATE TABLE `cases` (
 
 LOCK TABLES `cases` WRITE;
 /*!40000 ALTER TABLE `cases` DISABLE KEYS */;
-INSERT INTO `cases` VALUES (1,'1','Cardiac','Chest pain','56 year old gentleman presented to A&E on 20/4/13 with sudden onset, left sided, crushing chest pain which started at 11am this morning.','2013-05-25 22:30:30');
+INSERT INTO `cases` VALUES (1,'1',1,'Chest pain','56 year old gentleman presented to A&E on 20/4/13 with sudden onset, left sided, crushing chest pain which started at 11am this morning.','2013-05-25 22:30:30'),(2,'1',2,'Weakness','Saw patient with neuro signs. Recent Right MCA stroke. Increased tone, greater in UL vs LL. Spastic in right arm. Upgoing plantars on right foot.','2013-05-26 08:22:25');
 /*!40000 ALTER TABLE `cases` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -147,6 +147,30 @@ LOCK TABLES `hospitals` WRITE;
 /*!40000 ALTER TABLE `hospitals` DISABLE KEYS */;
 INSERT INTO `hospitals` VALUES (1,'Kings College Hospital'),(2,'University College Hospital');
 /*!40000 ALTER TABLE `hospitals` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `specialties`
+--
+
+DROP TABLE IF EXISTS `specialties`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `specialties` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `specialties`
+--
+
+LOCK TABLES `specialties` WRITE;
+/*!40000 ALTER TABLE `specialties` DISABLE KEYS */;
+INSERT INTO `specialties` VALUES (1,'Cardiac'),(2,'Geriatric');
+/*!40000 ALTER TABLE `specialties` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -207,4 +231,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2013-05-26  0:25:31
+-- Dump completed on 2013-05-26  9:24:33
